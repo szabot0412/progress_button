@@ -15,7 +15,7 @@ class App extends StatelessWidget {
             width: 200,
             height: 60,
             child: ProgressButton(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
               strokeWidth: 2,
               child: Text(
                 "Sample",

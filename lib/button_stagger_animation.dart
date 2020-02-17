@@ -10,6 +10,8 @@ class ButtonStaggerAnimation extends StatelessWidget {
   final double progressIndicatorSize;
   final BorderRadius borderRadius;
   final double strokeWidth;
+  final double borderWidth;
+  final double elevation;
   final Function(AnimationController) onPressed;
   final Widget child;
 
@@ -17,11 +19,13 @@ class ButtonStaggerAnimation extends StatelessWidget {
     Key key,
     this.controller,
     this.color,
+    this.elevation,
     this.progressIndicatorColor,
     this.progressIndicatorSize,
     this.borderRadius,
     this.onPressed,
     this.strokeWidth,
+    this.borderWidth,
     this.child,
   }) : super(key: key);
 
@@ -46,11 +50,8 @@ class ButtonStaggerAnimation extends StatelessWidget {
     return child;
   }
 
-  AnimatedBuilder _progressAnimatedBuilder(
-      BuildContext context, BoxConstraints constraints) {
-    var buttonHeight = (constraints.maxHeight != double.infinity)
-        ? constraints.maxHeight
-        : 60.0;
+  AnimatedBuilder _progressAnimatedBuilder(BuildContext context, BoxConstraints constraints) {
+    var buttonHeight = (constraints.maxHeight != double.infinity) ? constraints.maxHeight : 60.0;
 
     var widthAnimation = Tween<double>(
       begin: constraints.maxWidth,
@@ -77,8 +78,10 @@ class ButtonStaggerAnimation extends StatelessWidget {
           height: buttonHeight,
           width: widthAnimation.value,
           child: RaisedButton(
+            elevation: elevation,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadiusAnimation.value,
+              side: BorderSide(color: Color(0xffff5745), width: borderWidth),
             ),
             color: color,
             child: _buttonChild(),

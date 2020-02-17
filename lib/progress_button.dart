@@ -6,42 +6,55 @@ import 'package:progress_indicator_button/button_stagger_animation.dart';
 class ProgressButton extends StatefulWidget {
   /// The background color of the button.
   final Color color;
+
   /// The progress indicator color.
   final Color progressIndicatorColor;
+
   /// The size of the progress indicator.
   final double progressIndicatorSize;
+
   /// The border radius while NOT animating.
   final BorderRadius borderRadius;
+
   /// The duration of the animation.
   final Duration animationDuration;
 
+  /// Elevation of the button
+  final double elevation;
+
   /// The stroke width of progress indicator.
   final double strokeWidth;
+
   /// Function that will be called at the on pressed event.
   ///
   /// This will grant access to its [AnimationController] so
   /// that the animation can be controlled based on the need.
   final Function(AnimationController) onPressed;
+
   /// The child to display on the button.
   final Widget child;
 
+  final double borderWidth;
+
   ProgressButton({
+    Key key,
     @required this.child,
     @required this.onPressed,
     this.color = Colors.blue,
     this.strokeWidth = 2,
+    this.elevation,
+    this.borderWidth,
     this.progressIndicatorColor = Colors.white,
     this.progressIndicatorSize = 30,
     this.borderRadius = const BorderRadius.all(Radius.circular(0)),
     this.animationDuration = const Duration(milliseconds: 300),
-  });
+  }) : super(key: key);
 
   @override
   _ProgressButtonState createState() => _ProgressButtonState();
 }
 
-class _ProgressButtonState extends State<ProgressButton>
-    with TickerProviderStateMixin {
+class _ProgressButtonState extends State<ProgressButton> with TickerProviderStateMixin {
   AnimationController _controller;
 
   @override
@@ -66,11 +79,13 @@ class _ProgressButtonState extends State<ProgressButton>
       child: ButtonStaggerAnimation(
         controller: _controller.view,
         color: widget.color,
+        borderWidth: widget.borderWidth,
         strokeWidth: widget.strokeWidth,
         progressIndicatorColor: widget.progressIndicatorColor,
         progressIndicatorSize: widget.progressIndicatorSize,
         borderRadius: widget.borderRadius,
         onPressed: widget.onPressed,
+        elevation: widget.elevation,
         child: widget.child,
       ),
     );
