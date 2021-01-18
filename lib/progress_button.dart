@@ -13,6 +13,9 @@ class ProgressButton extends StatefulWidget {
   /// The size of the progress indicator.
   final double progressIndicatorSize;
 
+  /// The color of the outer border
+  final Color borderColor;
+
   /// The border radius while NOT animating.
   final BorderRadius borderRadius;
 
@@ -44,6 +47,7 @@ class ProgressButton extends StatefulWidget {
     this.strokeWidth = 2,
     this.elevation,
     this.borderWidth,
+    this.borderColor = const Color(0xffff5745),
     this.progressIndicatorColor = Colors.white,
     this.progressIndicatorSize = 30,
     this.borderRadius = const BorderRadius.all(Radius.circular(0)),
@@ -54,7 +58,8 @@ class ProgressButton extends StatefulWidget {
   _ProgressButtonState createState() => _ProgressButtonState();
 }
 
-class _ProgressButtonState extends State<ProgressButton> with TickerProviderStateMixin {
+class _ProgressButtonState extends State<ProgressButton>
+    with TickerProviderStateMixin {
   AnimationController _controller;
 
   @override
@@ -80,6 +85,7 @@ class _ProgressButtonState extends State<ProgressButton> with TickerProviderStat
         controller: _controller.view,
         color: widget.color,
         borderWidth: widget.borderWidth,
+        borderColor: widget.borderColor,
         strokeWidth: widget.strokeWidth,
         progressIndicatorColor: widget.progressIndicatorColor,
         progressIndicatorSize: widget.progressIndicatorSize,
