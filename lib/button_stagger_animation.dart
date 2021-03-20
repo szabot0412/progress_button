@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 class ButtonStaggerAnimation extends StatelessWidget {
   // Animation fields
-  final AnimationController controller;
+  final AnimationController? controller;
 
   // Display fields
-  final Color color;
-  final Color progressIndicatorColor;
-  final double progressIndicatorSize;
-  final BorderRadius borderRadius;
-  final double strokeWidth;
-  final double borderWidth;
-  final Color borderColor;
-  final double elevation;
-  final Function(AnimationController) onPressed;
-  final Widget child;
+  final Color? color;
+  final Color? progressIndicatorColor;
+  final double? progressIndicatorSize;
+  final BorderRadius? borderRadius;
+  final double? strokeWidth;
+  final double? borderWidth;
+  final Color? borderColor;
+  final double? elevation;
+  final Function(AnimationController? c)? onPressed;
+  final Widget? child;
 
   ButtonStaggerAnimation({
-    Key key,
+    Key? key,
     this.controller,
     this.color,
     this.elevation,
@@ -25,7 +25,7 @@ class ButtonStaggerAnimation extends StatelessWidget {
     this.progressIndicatorSize,
     this.borderRadius,
     this.onPressed,
-    @required this.borderColor,
+    required this.borderColor,
     this.strokeWidth,
     this.borderWidth,
     this.child,
@@ -36,16 +36,16 @@ class ButtonStaggerAnimation extends StatelessWidget {
     return LayoutBuilder(builder: _progressAnimatedBuilder);
   }
 
-  Widget _buttonChild() {
-    if (controller.isAnimating) {
+  Widget? _buttonChild() {
+    if (controller!.isAnimating) {
       return Container();
-    } else if (controller.isCompleted) {
+    } else if (controller!.isCompleted) {
       return OverflowBox(
         maxWidth: progressIndicatorSize,
         maxHeight: progressIndicatorSize,
         child: CircularProgressIndicator(
-          strokeWidth: strokeWidth,
-          valueColor: AlwaysStoppedAnimation<Color>(progressIndicatorColor),
+          strokeWidth: strokeWidth!,
+          valueColor: AlwaysStoppedAnimation<Color?>(progressIndicatorColor),
         ),
       );
     }
@@ -63,7 +63,7 @@ class ButtonStaggerAnimation extends StatelessWidget {
       end: buttonHeight,
     ).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: controller!,
         curve: Curves.easeInOut,
       ),
     );
@@ -72,26 +72,30 @@ class ButtonStaggerAnimation extends StatelessWidget {
       begin: borderRadius,
       end: BorderRadius.all(Radius.circular(buttonHeight / 2.0)),
     ).animate(CurvedAnimation(
-      parent: controller,
+      parent: controller!,
       curve: Curves.easeInOut,
     ));
 
     return AnimatedBuilder(
-      animation: controller,
+      animation: controller!,
       builder: (context, child) {
         return SizedBox(
           height: buttonHeight,
           width: widthAnimation.value,
-          child: RaisedButton(
-            elevation: elevation,
-            shape: RoundedRectangleBorder(
-              borderRadius: borderRadiusAnimation.value,
-              side: BorderSide(color: borderColor, width: borderWidth),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              elevation: MaterialStateProperty.all(elevation),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: borderRadiusAnimation.value,
+                side: BorderSide(
+                    color: borderColor ?? Color(0xffff5745),
+                    width: borderWidth!),
+              )),
+              foregroundColor: MaterialStateProperty.all(color),
             ),
-            color: color,
             child: _buttonChild(),
             onPressed: () {
-              this.onPressed(controller);
+              this.onPressed!(controller);
             },
           ),
         );

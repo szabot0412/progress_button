@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:progress_indicator_button/progress_button.dart';
+import 'package:spinner_button/spinner_button.dart';
 
 class App extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
           child: Container(
             width: 200,
             height: 60,
-            child: ProgressButton(
+            child: SpinnerButton(
               borderRadius: BorderRadius.all(Radius.circular(12)),
               strokeWidth: 2,
               child: Text(
@@ -24,8 +24,8 @@ class App extends StatelessWidget {
                   fontSize: 24,
                 ),
               ),
-              onPressed: (AnimationController controller) {
-                if (controller.isCompleted) {
+              onPressed: (AnimationController? controller) {
+                if (controller!.isCompleted) {
                   controller.reverse();
                 } else {
                   controller.forward();

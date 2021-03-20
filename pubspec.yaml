@@ -1,11 +1,13 @@
-name: progress_indicator_button
-description: A simple button which can transform and show a progress indicator.
-version: 0.0.3
-author: Pascal Brosinski<pascal@brosinski.eu>
-homepage: https://github.com/PascalAC/progress_button
+name: spinner_button
+description: A simple button which can transform and show a progress indicator.  Forked from another project
+version: 0.4.4
+author:
+  - Pascal Brosinski<pascal@brosinski.eu>
+  - Eric Martineau<edspuzzle@gmail.com>
+homepage: https://github.com/SunnyApp/progress_button
 
 environment:
-  sdk: ">=2.8.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:

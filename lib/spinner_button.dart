@@ -1,9 +1,10 @@
-library progress_button;
+library spinner_button;
 
 import 'package:flutter/material.dart';
-import 'package:progress_indicator_button/button_stagger_animation.dart';
 
-class ProgressButton extends StatefulWidget {
+import 'button_stagger_animation.dart';
+
+class SpinnerButton extends StatefulWidget {
   /// The background color of the button.
   final Color color;
 
@@ -23,7 +24,7 @@ class ProgressButton extends StatefulWidget {
   final Duration animationDuration;
 
   /// Elevation of the button
-  final double elevation;
+  final double? elevation;
 
   /// The stroke width of progress indicator.
   final double strokeWidth;
@@ -32,17 +33,17 @@ class ProgressButton extends StatefulWidget {
   ///
   /// This will grant access to its [AnimationController] so
   /// that the animation can be controlled based on the need.
-  final Function(AnimationController) onPressed;
+  final Function(AnimationController? controller) onPressed;
 
   /// The child to display on the button.
   final Widget child;
 
-  final double borderWidth;
+  final double? borderWidth;
 
-  ProgressButton({
-    Key key,
-    @required this.child,
-    @required this.onPressed,
+  SpinnerButton({
+    Key? key,
+    required this.child,
+    required this.onPressed,
     this.color = Colors.blue,
     this.strokeWidth = 2,
     this.elevation,
@@ -55,12 +56,12 @@ class ProgressButton extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ProgressButtonState createState() => _ProgressButtonState();
+  _SpinnerButtonState createState() => _SpinnerButtonState();
 }
 
-class _ProgressButtonState extends State<ProgressButton>
+class _SpinnerButtonState extends State<SpinnerButton>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -82,7 +83,7 @@ class _ProgressButtonState extends State<ProgressButton>
   Widget build(BuildContext context) {
     return Center(
       child: ButtonStaggerAnimation(
-        controller: _controller.view,
+        controller: _controller.view as AnimationController?,
         color: widget.color,
         borderWidth: widget.borderWidth,
         borderColor: widget.borderColor,
