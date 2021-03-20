@@ -1,6 +1,6 @@
 name: spinner_button
 description: A simple button which can transform and show a progress indicator.  Forked from another project
-version: 0.4.4
+version: 0.4.4-nullsafety.1
 author:
   - Pascal Brosinski<pascal@brosinski.eu>
   - Eric Martineau<edspuzzle@gmail.com>
