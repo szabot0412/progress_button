@@ -1,3 +1,11 @@
+## [0.5.0+1]
+ * Bump minor
+Update to nullsafety
+Pre-release
+Renamed package
+Fixing background
+Ignoring DS_Store
+
 ## [0.0.3] - 2019-08-02
 
 * A new parameter to customize the progress indicator's stroke width

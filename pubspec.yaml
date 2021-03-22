@@ -1,5 +1,5 @@
 name: spinner_button
-version: 0.5.0
+version: 0.5.0+1
 homepage: https://github.com/SunnyApp/progress_button
 description: A simple button which can transform and show a progress indicator.  Forked from another project
 environment: 
