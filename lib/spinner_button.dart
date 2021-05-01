@@ -22,7 +22,7 @@ class SpinnerButtonController{
     if(isInProgress){
       animationController.forward();
     }else{
-      animationController.reverse();
+      animationController.reverse(from: animationController.value);
     }
 
   }
