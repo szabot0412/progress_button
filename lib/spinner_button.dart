@@ -11,6 +11,7 @@ class SpinnerButtonController{
   SpinnerButtonController(this.animationController);
 
   bool _isInProgress=false;
+  bool isDisposed=false;
 
   bool get isInProgress{
     return _isInProgress;
@@ -19,12 +20,21 @@ class SpinnerButtonController{
   void set isInProgress(bool isInProgress) {
     _isInProgress=isInProgress;
 
+    if(isDisposed){
+      return;
+    }
+
     if(isInProgress){
       animationController.forward();
     }else{
       animationController.reverse(from: animationController.value);
     }
 
+  }
+
+  void dispose(){
+    isDisposed=true;
+    animationController.dispose();
   }
 
 }
@@ -102,7 +112,7 @@ class _SpinnerButtonState extends State<SpinnerButton>
 
   @override
   void dispose() {
-    _controller.dispose();
+    spinnerButtonController.dispose();
     super.dispose();
   }
 
