@@ -84,6 +84,8 @@ class ButtonStaggerAnimation extends StatelessWidget {
           width: widthAnimation.value,
           child: ElevatedButton(
             style: ButtonStyle(
+              padding: MaterialStateProperty.all(EdgeInsets.zero),
+              minimumSize: MaterialStateProperty.all(Size(30, 30)),
               elevation: MaterialStateProperty.all(elevation),
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: borderRadiusAnimation.value,
